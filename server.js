@@ -5,8 +5,21 @@ const port = 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+const attendanceRoute = require("./routes/attendence");
+const bankingRoutes = require("./routes/banking");
 const companyRoutes = require("./routes/company");
+const educationRoutes = require("./routes/education");
+const employeeRoutes = require("./routes/employee");
+const personRoutes = require("./routes/person");
+const time_offRoutes = require("./routes/time_off");
+
+app.use("/attendence", attendanceRoute);
+app.use("/banking", bankingRoutes);
 app.use("/company", companyRoutes);
+app.use("/education", educationRoutes);
+app.use("/employee", employeeRoutes);
+app.use("/person", personRoutes);
+app.use("/time_off", time_offRoutes);
 
 app.get("/", (req, res) => {
   res.send("hello");
