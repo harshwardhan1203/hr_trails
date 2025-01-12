@@ -13,8 +13,8 @@ exports.company_post_api = async (req, res) => {
       company_gst: company_gst,
       is_active: is_active,
     };
-    data = company.insert_company_data(comp);
-    // res.send(data);
+    data = await company.insert_company_data(comp);
+    res.send(data);
   } catch (error) {
     console.log(error);
   }
@@ -22,10 +22,8 @@ exports.company_post_api = async (req, res) => {
 
 exports.display_get_api = async (req, res) => {
   try {
-    const log = company.display_company_data();
-    // res.send(log);
-    console.log(log);
-    res.send("hello world");
+    const log = await company.display_company_data();
+    res.send(log);
   } catch (error) {
     console.log(error);
   }

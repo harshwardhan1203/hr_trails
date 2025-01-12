@@ -51,10 +51,10 @@ exports.education_get_api = async (req, res) => {
 exports.education_update_api = async (req, res) => {
   try {
     const { field, data, id } = req.body;
-    const result = await education.update_education_data(field, data, id);
     if (field === undefined || data === undefined || id === undefined) {
       res.status(200).send("fields required");
     } else {
+      const result = await education.update_education_data(field, data, id);
       res
         .status(200)
         .send({ success: true, message: "Education record updated", result });

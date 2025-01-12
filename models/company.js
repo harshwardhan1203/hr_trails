@@ -19,7 +19,6 @@ company.insert_company_data = async function (comp) {
 company.display_company_data = async function () {
   try {
     let sql = `select * from company ;`;
-    let values = [];
     data = await query(sql);
     return data;
   } catch (error) {
@@ -40,18 +39,5 @@ company.update_company_data = async function (field, data, id) {
   }
 };
 
-// company.delete_company_data = async function (field,data,id){
-//     try {
-//         let sql=`update company set`
-//         +(data.)
-//          let sql = `UPDATE company SET ${field}=${data} WHERE company_id = ${id}}`;
-
-//         data = await query(sql);
-//         return data;
-//     } catch (error) {
-//          console.log(error);
-//         return 0;
-//     }
-// }
 
 module.exports = company;

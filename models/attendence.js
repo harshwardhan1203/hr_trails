@@ -5,9 +5,9 @@ var attendance = function (value) {};
 attendance.insert_attendance_data = async function (att) {
   try {
     let sql =
-      `INSERT INTO attendance (date, check_in, check_out, status, start_time, end_time, location_at_start_time, ip_address_, location_at_end_time) ` +
+      `INSERT INTO attendance (date, check_in, check_out, status, start_time, end_time, location_at_start_time, ip_address, location_at_end_time) ` +
       `VALUES ` +
-      `('${att.date}', '${att.check_in}', '${att.check_out}', '${att.status}', '${att.start_time}', '${att.end_time}', '${att.location_at_start_time}', '${att.ip_address_}', '${att.location_at_end_time}');`;
+      `('${att.date}', '${att.check_in}', '${att.check_out}', '${att.status}', '${att.start_time}', '${att.end_time}', '${att.location_at_start_time}', '${att.ip_address}', '${att.location_at_end_time}');`;
     let data = await query(sql);
     return data;
   } catch (error) {
@@ -29,7 +29,7 @@ attendance.display_attendance_data = async function () {
 
 attendance.update_attendance_data = async function (field, data, id) {
   try {
-    let sql = `UPDATE attendance SET ${field}='${data}' WHERE attendance_id = ${id};`;
+    let sql = `UPDATE attendance SET ${field}='${data}' WHERE attendence_id = ${id};`;
     let result = await query(sql);
     return result;
   } catch (error) {

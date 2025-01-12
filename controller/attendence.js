@@ -10,7 +10,7 @@ exports.attendance_post_api = async (req, res) => {
       start_time,
       end_time,
       location_at_start_time,
-      ip_address_,
+      ip_address,
       location_at_end_time,
     } = req.body;
 
@@ -22,7 +22,7 @@ exports.attendance_post_api = async (req, res) => {
       start_time: start_time,
       end_time: end_time,
       location_at_start_time: location_at_start_time,
-      ip_address_: ip_address_,
+      ip_address: ip_address,
       location_at_end_time: location_at_end_time,
     };
 

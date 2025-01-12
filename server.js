@@ -13,6 +13,9 @@ const employeeRoutes = require("./routes/employee");
 const personRoutes = require("./routes/person");
 const time_offRoutes = require("./routes/time_off");
 
+const swaggerDoc = require("./swagger-config.js");
+swaggerDoc(app);
+
 app.use("/attendence", attendanceRoute);
 app.use("/banking", bankingRoutes);
 app.use("/company", companyRoutes);
