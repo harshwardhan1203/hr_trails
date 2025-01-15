@@ -30,7 +30,6 @@ company.display_company_data = async function () {
 company.update_company_data = async function (field, data, id) {
   try {
     let sql = `UPDATE company SET ${field}='${data}' WHERE company_id = ${id};`;
-
     data = await query(sql);
     return data;
   } catch (error) {
@@ -38,6 +37,5 @@ company.update_company_data = async function (field, data, id) {
     return 0;
   }
 };
-
 
 module.exports = company;

@@ -38,6 +38,8 @@ const companyRoute = require("../controller/company");
  * @swagger
  * /company/companyRoute:
  *   get:
+ *     tags:
+ *       - company
  *     summary: Retrieve all company records
  *     description: Fetch all records from the company table.
  *     responses:
@@ -58,6 +60,8 @@ router.route("/companyRoute").get(companyRoute.display_get_api); // Correct func
  * @swagger
  * /company/companyRoute:
  *   post:
+ *     tags:
+ *       - company
  *     summary: Add a new company
  *     description: Insert a new record into the company table.
  *     requestBody:
@@ -78,6 +82,8 @@ router.route("/companyRoute").post(companyRoute.company_post_api); // Correct fu
  * @swagger
  * /company/companyRoute:
  *   put:
+ *     tags:
+ *       - company
  *     summary: Update a company record
  *     description: Update an existing record in the company table.
  *     requestBody:

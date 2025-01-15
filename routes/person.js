@@ -35,6 +35,8 @@ const personRoute = require("../controller/person");
  * @swagger
  * /person/personRoute:
  *   get:
+ *     tags:
+ *       - person
  *     summary: Retrieve all person records
  *     description: Fetch all records from the person table.
  *     responses:
@@ -53,6 +55,8 @@ router.route("/personRoute").get(personRoute.person_get_api);
  * @swagger
  * /person/personRoute:
  *   post:
+ *     tags:
+ *       - person
  *     summary: Add a new person
  *     description: Insert a new record into the person table.
  *     requestBody:
@@ -71,6 +75,8 @@ router.route("/personRoute").post(personRoute.person_post_api);
  * @swagger
  * /person/personRoute:
  *   put:
+ *     tags:
+ *       - person
  *     summary: Update a person record
  *     description: Update an existing record in the person table.
  *     requestBody:

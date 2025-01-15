@@ -28,6 +28,8 @@ const bankingRoute = require("../controller/banking");
  * @swagger
  * /banking/bankingRoute:
  *   get:
+ *     tags:
+ *       - banking
  *     summary: Retrieve all banking records
  *     description: Fetch all records from the banking table.
  *     responses:
@@ -48,6 +50,8 @@ router.route("/bankingRoute").get(bankingRoute.banking_get_api); // Correct func
  * @swagger
  * /banking/bankingRoute:
  *   post:
+ *     tags:
+ *       - banking
  *     summary: Add a new banking record
  *     description: Insert a new record into the banking table.
  *     requestBody:
@@ -68,6 +72,8 @@ router.route("/bankingRoute").post(bankingRoute.banking_post_api); // Correct fu
  * @swagger
  * /banking/bankingRoute:
  *   put:
+ *     tags:
+ *       - banking
  *     summary: Update a banking record
  *     description: Update an existing record in the banking table.
  *     requestBody:

@@ -28,6 +28,8 @@ const timeOffRoute = require("../controller/time_off");
  * @swagger
  * /time_off/time_offRoute:
  *   get:
+ *     tags:
+ *       - time_off
  *     summary: Retrieve all time-off data
  *     description: Fetch all records from the time_off table
  *     responses:
@@ -46,6 +48,8 @@ router.route("/time_offRoute").get(timeOffRoute.time_off_get_api);
  * @swagger
  * /time_off/time_offRoute:
  *   post:
+ *     tags:
+ *       - time_off
  *     summary: Add a new time-off record
  *     description: Insert a new record into the time_off table
  *     requestBody:
@@ -64,6 +68,8 @@ router.route("/time_offRoute").post(timeOffRoute.time_off_post_api);
  * @swagger
  * /time_off/time_offRoute:
  *   put:
+ *     tags:
+ *       - time_off
  *     summary: Update an existing time-off record
  *     description: Update an existing record in the time_off table
  *     requestBody:

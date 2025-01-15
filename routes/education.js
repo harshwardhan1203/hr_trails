@@ -34,6 +34,8 @@ const educationRoute = require("../controller/education");
  * @swagger
  * /education/educationRoute:
  *   get:
+ *     tags:
+ *       - education
  *     summary: Retrieve all education records
  *     description: Fetch all records from the education table.
  *     responses:
@@ -54,6 +56,8 @@ router.route("/educationRoute").get(educationRoute.education_get_api);
  * @swagger
  * /education/educationRoute:
  *   post:
+ *     tags:
+ *       - education
  *     summary: Add a new education record
  *     description: Insert a new record into the education table.
  *     requestBody:
@@ -74,6 +78,8 @@ router.route("/educationRoute").post(educationRoute.education_post_api);
  * @swagger
  * /education/educationRoute:
  *   put:
+ *     tags:
+ *       - education
  *     summary: Update an education record
  *     description: Update an existing record in the education table.
  *     requestBody:
@@ -101,4 +107,3 @@ router.route("/educationRoute").post(educationRoute.education_post_api);
 router.route("/educationRoute").put(educationRoute.education_update_api);
 
 module.exports = router;
-

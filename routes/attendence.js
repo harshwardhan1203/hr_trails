@@ -48,6 +48,8 @@ const attendanceRoute = require("../controller/attendence");
  * @swagger
  * /attendence/attendanceRoute:
  *   get:
+ *     tags:
+ *       - attendance
  *     summary: Retrieve all attendance records
  *     description: Fetch all attendance records.
  *     responses:
@@ -56,12 +58,15 @@ const attendanceRoute = require("../controller/attendence");
  *       500:
  *         description: Error fetching attendance records.
  */
+
 router.route("/attendanceRoute").get(attendanceRoute.attendance_get_api);
 
 /**
  * @swagger
  * /attendence/attendanceRoute:
  *   post:
+ *     tags:
+ *       - attendance
  *     summary: Record attendance
  *     description: Insert a new attendance record.
  *     requestBody:
@@ -80,6 +85,8 @@ router.route("/attendanceRoute").post(attendanceRoute.attendance_post_api);
  * @swagger
  * /attendence/attendanceRoute:
  *   put:
+ *     tags:
+ *       - attendance
  *     summary: Update an attendance record
  *     description: Update an existing attendance record.
  *     requestBody:
@@ -107,5 +114,3 @@ router.route("/attendanceRoute").post(attendanceRoute.attendance_post_api);
 router.route("/attendanceRoute").put(attendanceRoute.attendance_update_api);
 
 module.exports = router;
-
-

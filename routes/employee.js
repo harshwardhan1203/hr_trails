@@ -49,6 +49,8 @@ const employeeRoute = require("../controller/employee");
  * @swagger
  * /employee/employeeRoute:
  *   get:
+ *     tags:
+ *       - employee
  *     summary: Retrieve all employee records
  *     description: Fetch all records from the employee table.
  *     responses:
@@ -69,6 +71,8 @@ router.route("/employeeRoute").get(employeeRoute.employee_get_api);
  * @swagger
  * /employee/employeeRoute:
  *   post:
+ *     tags:
+ *       - employee
  *     summary: Add a new employee
  *     description: Insert a new record into the employee table.
  *     requestBody:
@@ -89,6 +93,8 @@ router.route("/employeeRoute").post(employeeRoute.employee_post_api);
  * @swagger
  * /employee/employeeRoute:
  *   put:
+ *     tags:
+ *       - employee
  *     summary: Update an employee record
  *     description: Update an existing record in the employee table.
  *     requestBody:

@@ -13,9 +13,15 @@ exports.person_post_api = async (req, res) => {
       is_active: is_active,
       password: password,
     };
-
-    const data = await person.insert_person_data(personData);
-    res.status(200).send({ success: true, message: "Person added", data });
+    if (password.length <= 8) {
+      const data = await person.insert_person_data(personData);
+      res.status(200).send({ success: true, message: "Person added", data });
+    } else {
+      res.status(200).send({
+        success: false,
+        message: "password should be of lenth 8 or less",
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send({ success: false, message: "Error adding person" });
