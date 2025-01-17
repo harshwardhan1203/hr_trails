@@ -4,6 +4,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management</title>
+    <link rel="stylesheet" href="/time_off.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Add New Leave</h1>
+        <form action="/time_off/add" method="POST">
+            <div class="form-group">
+                <label for="leave_type">Leave Type:</label>
+                <input type="text" name="leave_type" id="leave_type" required>
+            </div>
+
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" name="start_date" id="start_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="end_date">End Date:</label>
+                <input type="date" name="end_date" id="end_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="reason">Reason:</label>
+                <textarea name="reason" id="reason" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <input type="text" name="status" id="status" required>
+            </div>
+
+            <button type="submit">Save Leave</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h1>Leave Details</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Leave ID</th>
+                    <th>Leave Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Person ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(leave=> { %>
+                    <tr>
+                        <td>
+                            <%= leave.leave_id %>
+                        </td>
+                        <td>
+                            <%= leave.leave_type %>
+                        </td>
+                        <td>
+                            <%= new Date(leave.start_date).toLocaleDateString() %>
+                        </td>
+                        <td>
+                            <%= new Date(leave.end_date).toLocaleDateString() %>
+                        </td>
+                        <td>
+                            <%= leave.reason %>
+                        </td>
+                        <td>
+                            <%= leave.status %>
+                        </td>
+                        <td>
+                            <%= new Date(leave.created_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <%= new Date(leave.updated_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <%= leave.person_id ? leave.person_id : 'N/A' %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <h1>Modify Leave</h1>
+        <form id="modifyForm">
+            <div class="form-group">
+                <label for="field">Field to Modify:</label>
+                <select name="field" id="field">
+                    <option value="leave_type">Leave Type</option>
+                    <option value="start_date">Start Date</option>
+                    <option value="end_date">End Date</option>
+                    <option value="reason">Reason</option>
+                    <option value="status">Status</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="data">New Data:</label>
+                <input type="text" id="data" name="data" required>
+            </div>
+
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input type="number" id="id" name="id" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('modifyForm');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = {
+                field: document.getElementById('field').value,
+                data: document.getElementById('data').value,
+                id: parseInt(document.getElementById('id').value, 10),
+            };
+
+            try {
+                const response = await fetch('/time_off/time_offRoute', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                if (response.ok) {
+                    location.reload('/time_off/time_offRoute');
+                } else {
+                    const error = await response.json();
+                    alert(`Error: ${error.message}`);
+                }
+            } catch (error) {
+                console.error('Error updating data:', error);
+                alert('An error occurred while updating the data.');
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave Details</title>
     <link rel="stylesheet" href="/time_off.css">
 </head>
@@ -93,6 +264,59 @@
             <button type="submit">Save Leave</button>
         </form>
     </div>
+    <div>
+        <div class="container">
+            <h1>Modify Data</h1>
+            <form id="modifyForm">
+                <label for="field">Field to Modify:</label>
+                <input type="text" id="field" name="field" value="leave_type" required>
+        
+                <label for="data">New Data:</label>
+                <input type="text" id="data" name="data" value="sick" required>
+        
+                <label for="id">ID:</label>
+                <input type="number" id="id" name="id" value="1" required>
+        
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+        <script>
+            const form = document.getElementById('modifyForm');
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                // Collect form data
+                const formData = {
+                    field: document.getElementById('field').value,
+                    data: document.getElementById('data').value,
+                    id: parseInt(document.getElementById('id').value, 10),
+                };
+
+                try {
+                    // Send PUT request using Fetch API
+                    const response = await fetch('/time_off/time_offRoute', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    });
+
+                    // Handle the response
+                    if (response.ok) {
+                        alert('Data updated successfully!');
+                    } else {
+                        const error = await response.json();
+                        alert(`Error: ${error.message}`);
+                    }
+                } catch (error) {
+                    console.error('Error updating data:', error);
+                    alert('An error occurred while updating the data.');
+                }
+            });
+        </script>
 </body>
 
-</html>
+</html> -->

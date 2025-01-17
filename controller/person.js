@@ -45,20 +45,16 @@ exports.person_update_api = async (req, res) => {
   try {
     const { field, data, id } = req.body;
     const result = await person.update_person_data(field, data, id);
-    res.status(200).send({ success: true, message: "Person updated", result });
+    return res
+      .status(200)
+      .send({ success: true, message: "Person updated", result });
+
+    // res.status(303).redirect("/person/personRoute");
   } catch (error) {
     console.log(error);
     res.status(500).send({ success: false, message: "Error updating person" });
   }
 };
-
-// exports.login_get_api = async (req,res)={
-//   try {
-//     res.render('../views/login.ejs');
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
 
 exports.login_post_api = async (req, res) => {
   try {

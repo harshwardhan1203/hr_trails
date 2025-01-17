@@ -108,6 +108,72 @@
             </tbody>
         </table>
     </div>
+
+
+    <div class="container-1">
+        <h1>Modify Data</h1>
+        <form id="modifyForm">
+            <label for="field">Field to Modify:</label>
+            <select name="field" id="field" required>
+                <option value="date">Date</option>
+                <option value="check_in">Check In</option>
+                <option value="check_out">Check Out</option>
+                <option value="status">Status</option>
+                <option value="start_time">Start Time</option>
+                <option value="end_time">End Time</option>
+                <option value="location_at_start_time">Location At Start</option>
+                <option value="location_at_end_time">Location At End</option>
+                <option value="ip_address">IP Address</option>
+            </select>
+    
+            <label for="data">New Data:</label>
+            <input type="text" id="data" name="data" required>
+    
+            <label for="id">ID:</label>
+            <input type="number" id="id" name="id" required>
+    
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+    <script>
+        const form = document.getElementById('modifyForm');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            // Collect form data
+            const formData = {
+                field: document.getElementById('field').value,
+                data: document.getElementById('data').value,
+                id: parseInt(document.getElementById('id').value, 10),
+            };
+
+            try {
+                // Send PUT request using Fetch API
+                const response = await fetch('/attendence/attendanceRoute', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+
+                });
+
+                // Handle the response
+                if (response.ok) {
+                    // alert('Data updated successfully!');
+                    location.reload('/attendence/attendanceRoute')
+                } else {
+                    const error = await response.json();
+                    alert(`Error: ${error.message}`);
+                }
+            } catch (error) {
+                console.error('Error updating data:', error);
+                alert('An error occurred while updating the data.');
+            }
+        });
+    </script>
 </body>
 
 </html>
