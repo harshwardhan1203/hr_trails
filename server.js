@@ -5,7 +5,7 @@ const port = 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.set("view engine", "ejs");
-// app.use(express.static("./public"));
+app.use(express.static("public"));
 
 const attendanceRoute = require("./routes/attendence");
 const bankingRoutes = require("./routes/banking");

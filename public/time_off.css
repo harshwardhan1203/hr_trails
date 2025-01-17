@@ -112,3 +112,163 @@ form .form-group textarea {
         font-size: 20px;
     }
 }
+           body {
+               font-family: Arial, sans-serif;
+               background-color: #f8f9fa;
+               padding: 20px;
+           }
+    
+           .container {
+               max-width: 900px;
+               margin: 0 auto;
+           }
+    
+           h1 {
+               text-align: center;
+               color: #333;
+               margin-bottom: 20px;
+           }
+    
+           table {
+               width: 100%;
+               border-collapse: collapse;
+               margin-top: 20px;
+               background-color: #fff;
+               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+           }
+    
+           th,
+           td {
+               padding: 12px;
+               border: 1px solid #ddd;
+               text-align: left;
+           }
+    
+           th {
+               background-color: #007bff;
+               color: #fff;
+               text-transform: uppercase;
+               font-size: 14px;
+           }
+    
+           tr:nth-child(even) {
+               background-color: #f9f9f9;
+           }
+    
+           tr:hover {
+               background-color: #f1f1f1;
+           }
+    
+           * {
+               margin: 0;
+               padding: 0;
+               box-sizing: border-box;
+           }
+    
+           body {
+               font-family: 'Arial', sans-serif;
+               background-color: #f0f4f8;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               height: 100vh;
+           }
+    
+           .container {
+               background-color: #ffffff;
+               padding: 30px;
+               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+               border-radius: 8px;
+               max-width: 600px;
+               width: 100%;
+           }
+    
+           h1 {
+               text-align: center;
+               color: #333;
+               margin-bottom: 20px;
+               font-size: 24px;
+           }
+    
+           form {
+               display: flex;
+               flex-direction: column;
+           }
+    
+           label {
+               margin-bottom: 8px;
+               font-size: 14px;
+               color: #555;
+           }
+    
+           input,
+           textarea {
+               padding: 12px;
+               margin-bottom: 15px;
+               border: 1px solid #ddd;
+               border-radius: 4px;
+               font-size: 14px;
+               color: #333;
+               width: 100%;
+           }
+    
+           input[type="date"] {
+               padding: 10px;
+           }
+    
+           textarea {
+               resize: vertical;
+               min-height: 100px;
+           }
+    
+           input:focus,
+           textarea:focus {
+               outline: none;
+               border-color: #007bff;
+               box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+           }
+    
+           button {
+               background-color: #007bff;
+               color: #fff;
+               padding: 12px;
+               border: none;
+               border-radius: 4px;
+               font-size: 16px;
+               cursor: pointer;
+               transition: background-color 0.3s ease;
+           }
+    
+           button:hover {
+               background-color: #0056b3;
+           }
+    
+           button:active {
+               background-color: #004085;
+           }
+    
+           form .form-group {
+               display: flex;
+               flex-direction: column;
+               margin-bottom: 15px;
+           }
+    
+           form .form-group label {
+               margin-bottom: 5px;
+           }
+    
+           form .form-group input,
+           form .form-group textarea {
+               border-radius: 5px;
+           }
+    
+           @media (max-width: 768px) {
+               .container {
+                   padding: 20px;
+                   width: 90%;
+               }
+    
+               h1 {
+                   font-size: 20px;
+               }
+           }
