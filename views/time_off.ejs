@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Details</title>
+    <link rel="stylesheet" href="../public/time_off.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+
+        /* General Reset and Layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+input,
+textarea {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    width: 100%;
+}
+
+input[type="date"] {
+    padding: 10px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004085;
+}
+
+form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+form .form-group label {
+    margin-bottom: 5px;
+}
+
+form .form-group input,
+form .form-group textarea {
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Leave Details</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Leave ID</th>
+                    <th>Leave Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Person ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(leave=> { %>
+                    <tr>
+                        <td>
+                            <%= leave.leave_id %>
+                        </td>
+                        <td>
+                            <%= leave.leave_type %>
+                        </td>
+                        <td>
+                            <%= new Date(leave.start_date).toLocaleDateString() %>
+                        </td>
+                        <td>
+                            <%= new Date(leave.end_date).toLocaleDateString() %>
+                        </td>
+                        <td>
+                            <%= leave.reason %>
+                        </td>
+                        <td>
+                            <%= leave.status %>
+                        </td>
+                        <td>
+                            <%= new Date(leave.created_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <%= new Date(leave.updated_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <%= leave.person_id ? leave.person_id : 'N/A' %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="container">
+        <h1>Add New Leave</h1>
+        <form action="/time_off/time_offRoute" method="POST">
+            <div class="form-group">
+                <label for="leave_type">Leave Type:</label>
+                <input type="text" name="leave_type" id="leave_type" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" name="start_date" id="start_date" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="end_date">End Date:</label>
+                <input type="date" name="end_date" id="end_date" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="reason">Reason:</label>
+                <textarea name="reason" id="reason" required></textarea>
+            </div>
+    
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <input type="text" name="status" id="status" required>
+            </div>
+    
+            <button type="submit">Save Leave</button>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Details</title>
+    <style>
+        /* General Table Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        th,
+        td {
+            padding: 10px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .is-active-yes {
+            color: green;
+            font-weight: bold;
+        }
+
+        .is-active-no {
+            color: red;
+            font-weight: bold;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input,
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Company Details</h1>
+
+        <!-- Form to Add New Company -->
+        <form action="/company/companyRoute" method="POST">
+            <label for="name">Company Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="industry">Industry:</label>
+            <input type="text" id="industry" name="industry" required>
+
+            <label for="company_gst">GST Number:</label>
+            <input type="text" id="company_gst" name="company_gst" required>
+
+            <label for="is_active">Is Active:</label>
+            <select id="is_active" name="is_active" required>
+                <option value="y">Yes</option>
+                <option value="n">No</option>
+            </select>
+
+            <button type="submit">Add Company</button>
+        </form>
+
+        <!-- Table Displaying Company Details -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Industry</th>
+                    <th>GST</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Active</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(company=> { %>
+                    <tr>
+                        <td>
+                            <%= company.company_id %>
+                        </td>
+                        <td>
+                            <%= company.name %>
+                        </td>
+                        <td>
+                            <%= company.address %>
+                        </td>
+                        <td>
+                            <%= company.email %>
+                        </td>
+                        <td>
+                            <%= company.phone %>
+                        </td>
+                        <td>
+                            <%= company.industry %>
+                        </td>
+                        <td>
+                            <%= company.company_gst %>
+                        </td>
+                        <td>
+                            <%= new Date(company.created_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <%= new Date(company.updated_at).toLocaleString() %>
+                        </td>
+                        <td class="<%= company.is_active === 'y' ? 'is-active-yes' : 'is-active-no' %>">
+                            <%= company.is_active==='y' ? 'Yes' : 'No' %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Details</title>
+    <style>
+        /* General Table Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        th,
+        td {
+            padding: 10px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .is-active-yes {
+            color: green;
+            font-weight: bold;
+        }
+
+        .is-active-no {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Company Details</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Industry</th>
+                    <th>GST</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Active</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(company=> { %>
+                    <tr>
+                        <td>
+                            <%= company.company_id %>
+                        </td>
+                        <td>
+                            <%= company.name %>
+                        </td>
+                        <td>
+                            <%= company.address %>
+                        </td>
+                        <td>
+                            <%= company.email %>
+                        </td>
+                        <td>
+                            <%= company.phone %>
+                        </td>
+                        <td>
+                            <%= company.industry %>
+                        </td>
+                        <td>
+                            <%= company.company_gst %>
+                        </td>
+                        <td>
+                            <%= new Date(company.created_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <%= new Date(company.updated_at).toLocaleString() %>
+                        </td>
+                        <td class="<%= company.is_active === 'y' ? 'is-active-yes' : 'is-active-no' %>">
+                            <%= company.is_active==='y' ? 'Yes' : 'No' %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html> -->

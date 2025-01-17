@@ -19,9 +19,8 @@ exports.banking_post_api = async (req, res) => {
       res.status(200).send("fields required");
     } else {
       const data = await banking.insert_banking_data(bank);
-      res
-        .status(200)
-        .send({ success: true, message: "Banking details added", data });
+      // res.status(200).send({ success: true, message: "Banking details added", data });
+      res.redirect("/banking/bankingRoute");
     }
   } catch (error) {
     console.log(error);
@@ -34,7 +33,8 @@ exports.banking_post_api = async (req, res) => {
 exports.banking_get_api = async (req, res) => {
   try {
     const data = await banking.display_banking_data();
-    res.status(200).send({ success: true, data });
+    // res.status(200).send({ success: true, data });
+    res.status(200).render("banking.ejs", { data: data });
   } catch (error) {
     console.log(error);
     res

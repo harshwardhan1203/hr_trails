@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <style>
+        /* General Table Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .is-active-yes {
+            color: green;
+            font-weight: bold;
+        }
+
+        .is-active-no {
+            color: red;
+            font-weight: bold;
+        }
+
+        form {
+            width: 100%;
+            margin-bottom: 20px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input,
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Employee Details</h1>
+
+        <!-- Form to Add New Employee -->
+        <form action="/employee/employeeRoute" method="POST">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required>
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="date_of_birth">Date of Birth:</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" required>
+
+            <label for="date_of_joining">Date of Joining:</label>
+            <input type="date" id="date_of_joining" name="date_of_joining" required>
+
+            <label for="salary">Salary:</label>
+            <input type="number" id="salary" name="salary" required>
+
+            <label for="is_active">Active:</label>
+            <select id="is_active" name="is_active" required>
+                <option value="y">Yes</option>
+                <option value="n">No</option>
+            </select>
+
+            <button type="submit">Add Employee</button>
+        </form>
+
+        <!-- Table Displaying Employees -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Position</th>
+                    <th>Date of Joining</th>
+                    <th>Salary</th>
+                    <th>Active</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(employee=> { %>
+                    <tr>
+                        <td>
+                            <%= employee.employee_id %>
+                        </td>
+                        <td>
+                            <%= employee.first_name %>
+                        </td>
+                        <td>
+                            <%= employee.last_name %>
+                        </td>
+                        <td>
+                            <%= employee.email %>
+                        </td>
+                        <td>
+                            <%= employee.phone %>
+                        </td>
+                        <td>
+                            <%= employee.date_of_birth %>
+                        </td>
+                        <td>
+                            <%= employee.gender %>
+                        </td>
+                        <td>
+                            <%= employee.position %>
+                        </td>
+                        <td>
+                            <%= employee.date_of_joining %>
+                        </td>
+                        <td>
+                            <%= employee.salary %>
+                        </td>
+                        <td class="<%= employee.is_active === 'y' ? 'is-active-yes' : 'is-active-no' %>">
+                            <%= employee.is_active==='y' ? 'Yes' : 'No' %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <style>
+        /* General Table Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .is-active-yes {
+            color: green;
+            font-weight: bold;
+        }
+
+        .is-active-no {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Employee Details</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Position</th>
+                    <th>Date of Joining</th>
+                    <th>Salary</th>
+                    <th>Active</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(employee=> { %>
+                    <tr>
+                        <td>
+                            <%= employee.employee_id %>
+                        </td>
+                        <td>
+                            <%= employee.first_name %>
+                        </td>
+                        <td>
+                            <%= employee.last_name %>
+                        </td>
+                        <td>
+                            <%= employee.email %>
+                        </td>
+                        <td>
+                            <%= employee.phone %>
+                        </td>
+                        <td>
+                            <%= employee.date_of_birth %>
+                        </td>
+                        <td>
+                            <%= employee.gender%>
+                        <td>
+                            <%= employee.position %>
+                        </td>
+                        <td>
+                            <%= employee.date_of_joining %>
+                        </td>
+                        <td>
+                            <%= employee.salary %>
+                        </td>
+                        <td class="<%= employee.is_active === 'y' ? 'is-active-yes' : 'is-active-no' %>">
+                            <%= employee.is_active==='y' ? 'Yes' : 'No' %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html> -->

@@ -10,12 +10,13 @@ exports.person_post_api = async (req, res) => {
       relationship: relationship,
       email: email,
       address: address,
-      is_active: is_active,
+      is_active: is_active === "on" ? "y" : "n",
       password: password,
     };
     if (password.length <= 8) {
       const data = await person.insert_person_data(personData);
-      res.status(200).send({ success: true, message: "Person added", data });
+      // res.status(200).send({ success: true, message: "Person added", data });
+      res.redirect("/person/personRoute");
     } else {
       res.status(200).send({
         success: false,
@@ -31,7 +32,9 @@ exports.person_post_api = async (req, res) => {
 exports.person_get_api = async (req, res) => {
   try {
     const data = await person.display_person_data();
-    res.status(200).send({ success: true, data });
+    // res.status(200).send({ success: true, data });
+    res.status(200).render("person.ejs", { data: data });
+    // res.redirect("/person/personRoute");
   } catch (error) {
     console.log(error);
     res.status(500).send({ success: false, message: "Error fetching persons" });
@@ -46,5 +49,29 @@ exports.person_update_api = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send({ success: false, message: "Error updating person" });
+  }
+};
+
+// exports.login_get_api = async (req,res)={
+//   try {
+//     res.render('../views/login.ejs');
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
+exports.login_post_api = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const result = await person.loginUser(username, password);
+    if (result == true) {
+      res.redirect("/");
+      // console.log("success");
+    } else {
+      res.redirect("/login/loginRoute");
+      // console.log("not success");
+    }
+  } catch (error) {
+    console.log(error);
   }
 };

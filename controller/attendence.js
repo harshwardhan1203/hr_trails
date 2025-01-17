@@ -27,9 +27,8 @@ exports.attendance_post_api = async (req, res) => {
     };
 
     const data = await attendance.insert_attendance_data(att);
-    res
-      .status(200)
-      .send({ success: true, message: "Attendance recorded", data });
+    // res.status(200).send({ success: true, message: "Attendance recorded", data });
+    res.redirect("/attendence/attendanceRoute");
   } catch (error) {
     console.log(error);
     res
@@ -41,7 +40,8 @@ exports.attendance_post_api = async (req, res) => {
 exports.attendance_get_api = async (req, res) => {
   try {
     const data = await attendance.display_attendance_data();
-    res.status(200).send({ success: true, data });
+    // res.status(200).send({ success: true, data });
+    res.status(200).render("attendance.ejs", { data: data });
   } catch (error) {
     console.log(error);
     res

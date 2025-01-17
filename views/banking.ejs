@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Banking Details</h1>
+
+        <!-- Form to Add New Banking Details -->
+        <form action="/banking/bankingRoute" method="POST">
+            <label for="bank_name">Bank Name:</label>
+            <input type="text" id="bank_name" name="bank_name" required>
+
+            <label for="account_number">Account Number:</label>
+            <input type="text" id="account_number" name="account_number" required>
+
+            <label for="ifsc_code">IFSC Code:</label>
+            <input type="text" id="ifsc_code" name="ifsc_code" required>
+
+            <label for="branch_name">Branch Name:</label>
+            <input type="text" id="branch_name" name="branch_name" required>
+
+            <button type="submit">Add Banking Details</button>
+        </form>
+
+        <!-- Table Displaying Banking Details -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Banking ID</th>
+                    <th>Bank Name</th>
+                    <th>Account Number</th>
+                    <th>IFSC Code</th>
+                    <th>Branch Name</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Person ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(bank=> { %>
+                    <tr>
+                        <td>
+                            <%= bank.banking_id %>
+                        </td>
+                        <td>
+                            <%= bank.bank_name %>
+                        </td>
+                        <td>
+                            <%= bank.account_number %>
+                        </td>
+                        <td>
+                            <%= bank.ifsc_code %>
+                        </td>
+                        <td>
+                            <%= bank.branch_name %>
+                        </td>
+                        <td>
+                            <%= new Date(bank.created_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <%= new Date(bank.updated_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <%= bank.person_id ? bank.person_id : 'N/A' %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Banking Details</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Banking ID</th>
+                    <th>Bank Name</th>
+                    <th>Account Number</th>
+                    <th>IFSC Code</th>
+                    <th>Branch Name</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Person ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(bank=> { %>
+                    <tr>
+                        <td>
+                            <%= bank.banking_id %>
+                        </td>
+                        <td>
+                            <%= bank.bank_name %>
+                        </td>
+                        <td>
+                            <%= bank.account_number %>
+                        </td>
+                        <td>
+                            <%= bank.ifsc_code %>
+                        </td>
+                        <td>
+                            <%= bank.branch_name %>
+                        </td>
+                        <td>
+                            <%= new Date(bank.created_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <%= new Date(bank.updated_at).toLocaleString() %>
+                        </td>
+                        <td>
+                            <%= bank.person_id ? bank.person_id : 'N/A' %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html> -->

@@ -14,7 +14,8 @@ exports.company_post_api = async (req, res) => {
       is_active: is_active,
     };
     data = await company.insert_company_data(comp);
-    res.send(data);
+    // res.send(data);
+    res.redirect("/company/companyRoute");
   } catch (error) {
     console.log(error);
   }
@@ -23,7 +24,8 @@ exports.company_post_api = async (req, res) => {
 exports.display_get_api = async (req, res) => {
   try {
     const log = await company.display_company_data();
-    res.send(log);
+    // res.send(log);
+    res.render("company.ejs");
   } catch (error) {
     console.log(error);
   }

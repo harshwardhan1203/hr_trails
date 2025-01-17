@@ -38,4 +38,27 @@ person.update_person_data = async function (field, data, id) {
   }
 };
 
+person.loginUser = async function (username, password) {
+  try {
+    let sql = `select name from person where name='${username}';`;
+    let result = await query(sql);
+    // console.log(result, "result");
+    if (result[0].name === username) {
+      let sql = `select password from person where name='${username}';`;
+      let newResult = await query(sql);
+      // console.log(newResult, "newResult");
+      if (newResult[0].password === password) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return 0;
+  }
+};
+
 module.exports = person;

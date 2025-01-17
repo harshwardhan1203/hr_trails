@@ -24,9 +24,8 @@ exports.education_post_api = async (req, res) => {
       res.status(200).send("fields required");
     } else {
       const data = await education.insert_education_data(edu);
-      res
-        .status(200)
-        .send({ success: true, message: "Education record added", data });
+      // res.status(200).send({ success: true, message: "Education record added", data });
+      res.redirect("/education/educationRoute");
     }
   } catch (error) {
     console.log(error);
@@ -39,7 +38,8 @@ exports.education_post_api = async (req, res) => {
 exports.education_get_api = async (req, res) => {
   try {
     const data = await education.display_education_data();
-    res.status(200).send({ success: true, data });
+    // res.status(200).send({ success: true, data });
+    res.status(200).render("education.ejs", { data: data });
   } catch (error) {
     console.log(error);
     res

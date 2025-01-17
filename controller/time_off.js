@@ -20,9 +20,8 @@ exports.time_off_post_api = async (req, res) => {
       res.status(200).send("fields required");
     } else {
       const data = await time_off.insert_time_off_data(leave);
-      res
-        .status(200)
-        .send({ success: true, message: "Time off request added", data });
+      // res.send({ success: true, message: "Time off request added", data });
+      res.redirect("/time_off/time_offRoute");
     }
   } catch (error) {
     console.log(error);
@@ -35,7 +34,8 @@ exports.time_off_post_api = async (req, res) => {
 exports.time_off_get_api = async (req, res) => {
   try {
     const data = await time_off.display_time_off_data();
-    res.status(200).send({ success: true, data });
+    // res.status(200).send({ success: true, data });
+    res.status(200).render("time_off.ejs", { data: data });
   } catch (error) {
     console.log(error);
     res

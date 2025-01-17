@@ -29,9 +29,8 @@ exports.employee_post_api = async (req, res) => {
     };
 
     const data = await employee.insert_employee_data(emp);
-    res
-      .status(200)
-      .send({ success: true, message: "Employee record added", data });
+    // res.status(200).send({ success: true, message: "Employee record added", data });
+    res.redirect("/employee/employeeRoute");
   } catch (error) {
     console.log(error);
     res
@@ -43,7 +42,8 @@ exports.employee_post_api = async (req, res) => {
 exports.employee_get_api = async (req, res) => {
   try {
     const data = await employee.display_employee_data();
-    res.status(200).send({ success: true, data });
+    // res.status(200).send({ success: true, data });
+    res.status(200).render("employee.ejs", { data: data });
   } catch (error) {
     console.log(error);
     res
